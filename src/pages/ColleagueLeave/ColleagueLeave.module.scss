@@ -1,0 +1,35 @@
+.colleague {
+    .table {
+        max-width: 100%;
+    }
+
+    .card {
+        margin-bottom: 4rem;
+        padding: 2rem 2rem 3rem;
+
+        .label {
+            width: 100%;
+            text-align: left;
+        }
+
+        .group {
+            display: flex;
+            flex-wrap: wrap;
+            column-gap: 4rem;
+            row-gap: 1rem;
+            
+            .control {
+                flex: 1 0 60%;
+                width: 20rem;
+                max-width: 40rem;
+            }
+
+            .spinner {
+                height: 15px;
+                width: 15px;
+                margin-left: 10px;
+                border-width: 3px;
+            }
+        }
+    }
+}

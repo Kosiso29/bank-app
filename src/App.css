@@ -1,31 +1,48 @@
+@import url("https://cdn.datatables.net/v/dt/dt-1.12.1/datatables.min.css");
+@import url("https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css");
+
+html {
+    overflow: hidden;
+}
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+th, td {
+    text-align: center !important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.pending-request-button {
+    display: flex !important;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.pending-request-button span {
+    pointer-events: none !important;
 }
 
-.App-link {
-  color: #61dafb;
+.pending-request-span-hide {
+    color: transparent;
+}
+
+.pending-request-spinner {
+    width: 1em !important;
+    height: 1em !important;
+    margin-left: 5px;
+    border-width: 3px !important;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.pending-request-spinner-hide {
+    display: none !important;
 }
 
 @keyframes App-logo-spin {

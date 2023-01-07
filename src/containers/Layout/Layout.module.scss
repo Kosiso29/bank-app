@@ -1,0 +1,41 @@
+.layout {
+    .toast {
+        position: fixed;
+        top: 8vh;
+        right: 4rem;
+        background-color: transparent;
+        box-shadow: none;
+        border: none;
+        width: unset;
+        z-index: 10000;
+
+        .alert {
+            button:focus {
+                box-shadow: none;
+            }
+        }
+
+        @media (max-width: 990px) {
+            right: 2rem;
+        }
+
+        @media (max-width: 450px) {
+            right: 1rem;
+        }
+    }
+
+    .children {
+        margin: 4rem 0 0 15rem;
+        padding: 2rem 4rem;
+        min-height: 100vh;
+
+        @media (max-width: 990px) {
+            margin-left: 0;
+            padding: 2rem;
+        }
+
+        @media (max-width: 450px) {
+            padding: 2rem 1rem;
+        }
+    }
+}

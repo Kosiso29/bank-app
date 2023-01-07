@@ -1,0 +1,57 @@
+.user {
+    width: 90%;
+    max-width: 60em;
+    animation: fade-in .3s ease-in-out;
+
+    @keyframes fade-in {
+        0% {
+            opacity: 0;
+        }
+    
+        100% {
+            opacity: 1;
+        }
+    }
+
+    .card {
+        padding: 2em 1em;
+        position: relative;
+
+        .title {
+            margin-bottom: 1.5em;
+        }
+
+        .close {
+            position: absolute;
+            right: 2em;
+            top: 3em;
+        }
+
+        .groups {
+            display: flex;
+            justify-content: space-between;
+            column-gap: 2em;
+            flex-wrap: wrap;
+        }
+
+        .group {
+            width: 100%;
+            flex: 1 0 40%;
+            margin-bottom: 1.5em;
+            min-width: 20em;
+
+            .label {
+                width: 100%;
+                text-align: left;
+            }
+        }
+
+        .spinner {
+            height: 15px;
+            width: 15px;
+            margin-left: 10px;
+            border-width: 3px;
+        }
+    }
+
+}

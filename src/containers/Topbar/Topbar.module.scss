@@ -1,0 +1,26 @@
+.topbar {
+    position: fixed;
+    width: 100vw;
+    height: 4rem;
+    background-color: #1d1934;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    z-index: 10;
+
+    .user {
+        margin-right: 4rem;
+        color: yellow;
+        margin-bottom: 0;
+
+        @media (max-width: 990px) {
+            margin-right: 2rem;
+        }
+
+        @media (max-width: 450px) {
+            margin-right: 1rem;
+        }
+    }
+}
