@@ -11,13 +11,16 @@ import CreateLeave from "../../containers/CreateLeave";
 import classes from "./Dashboard.module.scss";
 
 const Dashboard = (props) => {
+    const { token } = props;
     const [openModal, setOpenModal] = useState(false)
     const [show, setShow] = useState(false);
     const [dataList, setDataList] = useState(false);
     const [columnList, setColumnList] = useState(false);
 
     useEffect(() => {
-        axios.get("/customer", {
+        console.log('token', token);
+        axios.get("/customer/", {
+            headers: { 'Authorization': `token ${token}` },
             params: {
                 pageNumber: 1,
                 pageSize: 10
@@ -54,9 +57,10 @@ const Dashboard = (props) => {
                 setShow(true);
             })
             .catch(error => {
+                console.log(error);
                 alert(error);
             })
-    }, [openModal])
+    }, [openModal, token])
 
     const handleClick = () => {
         setOpenModal(true)
@@ -79,7 +83,7 @@ const Dashboard = (props) => {
 
 const mapStateToProps = state => {
     return {
-        userData: state.data.userData
+        token: state.auth.token
     }
 }
 

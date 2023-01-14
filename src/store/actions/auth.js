@@ -1,14 +1,12 @@
 import * as actionTypes from "./actionTypes";
 
-export const authVerifyEmail = (email, userId, userType) => {
-    localStorage.setItem('email', email);
-    localStorage.setItem('userId', userId);
-    localStorage.setItem('userType', userType);
+export const authVerifyEmail = (username, token) => {
+    localStorage.setItem('username', username);
+    localStorage.setItem('token', token);
     return {
         type: actionTypes.AUTH_VERIFY_EMAIL,
-        email: email,
-        userId: userId,
-        userType: userType
+        username,
+        token
     }
 }
 

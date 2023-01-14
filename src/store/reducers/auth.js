@@ -4,7 +4,9 @@ const initialState = {
     email: "",
     userId: "",
     userType: "",
-    loggedIn: false
+    loggedIn: false,
+    username: "",
+    token: ""
 }
 
 const authReducer = (state = initialState, action) => {
@@ -12,9 +14,8 @@ const authReducer = (state = initialState, action) => {
         case actionTypes.AUTH_VERIFY_EMAIL:
             return {
                 ...state,
-                email: action.email,
-                userId: action.userId,
-                userType: action.userType
+                username: action.username,
+                token: action.token
             }
         case actionTypes.AUTH_CHECK_STATE:
             return {

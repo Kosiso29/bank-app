@@ -8,7 +8,7 @@ import axios from "../../axios";
 import classes from "./Signin.module.scss";
 
 const Signin = (props) => {
-    const { onAlertUpdate } = props;
+    const { onAlertUpdate, onAuthVerifyEmail } = props;
     const { Title, Body } = Card;
     const { Group, Control } = Form;
 
@@ -17,7 +17,8 @@ const Signin = (props) => {
     const [submitted, setSubmitted] = useState(true);
   
     const [state, setState] = useState({
-        email: '',
+        username: '',
+        password: '',
         loggedIn: false,
         error: false,
         message: "",
@@ -26,12 +27,19 @@ const Signin = (props) => {
 
     const handleClick = async () => {
         setSubmitted(false);
+
+        const data = {
+            username: state.username,
+            password: state.password
+        };
+
         const getData = async () => {
             await new Promise((resolve, reject) => {
-                axios('/customer')
+                axios.post('/api-token-auth/', data)
                     .then(response => { 
                         setSubmitted(true);
                         console.log(response.data);
+                        onAuthVerifyEmail(state.username, response.data.token);
                         onAlertUpdate({
                             show: true,
                             variant: "success",
@@ -42,13 +50,12 @@ const Signin = (props) => {
                     })
                     .catch(error => {
                         setSubmitted(true);
-                        const errorMessage = error.response;
+                        // const errorMessage = error.response;
                         onAlertUpdate({
                             show: true,
                             variant: "danger",
-                            message: errorMessage
+                            message: "Login failed"
                         })
-                        console.log('error', error.response)
                     })
             })
         }
@@ -57,10 +64,10 @@ const Signin = (props) => {
     }
 
     const handleChange = (e, input) => {
-        if (input === "email") {
+        if (input === "username") {
             setState({
                 ...state,
-                email: e.target.value
+                username: e.target.value
             })
         }
 
@@ -78,7 +85,8 @@ const Signin = (props) => {
                 <Body>
                     <Title className={classes.title}>Sign In</Title>
                     <Group className={classes.group}>
-                        <Control className={classes.control} disabled type="email" placeholder="Your Email" onChange={(e) => { handleChange(e, "email") }} />
+                        <Control className={classes.control} type="text" placeholder="Username" onChange={(e) => { handleChange(e, "username") }} />
+                        <Control className={classes.control} type="password" placeholder="Password" onChange={(e) => { handleChange(e, "password") }} />
                         <Button
                             className={classes.button}
                             variant="success"
@@ -96,13 +104,14 @@ const Signin = (props) => {
 
 const mapStateToProps = state => {
     return {
-        email: state.auth.email
+        username: state.auth.username,
+        token: state.auth.token
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAuthVerifyEmail: (email, userId, userType) => dispatch(actions.authVerifyEmail(email, userId, userType)),
+        onAuthVerifyEmail: (username, token) => dispatch(actions.authVerifyEmail(username, token)),
         onAlertUpdate: (alertState) => dispatch(actions.alertUpdate(alertState)),
         onUpdateUserDashboard: (userData) => dispatch(actions.updateUserDashboard(userData))
     }

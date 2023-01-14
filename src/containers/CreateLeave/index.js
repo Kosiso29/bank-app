@@ -9,7 +9,7 @@ import * as actions from "../../store/actions";
 import classes from "./CreateLeave.module.scss";
 
 const CreateLeave = (props) => {
-    const { closeModal, onAlertUpdate } = props;
+    const { closeModal, onAlertUpdate, token } = props;
     const { Title, Body } = Card;
     const { Group, Control, Label } = Form;
 
@@ -36,7 +36,9 @@ const CreateLeave = (props) => {
             photo: null
         }
 
-        axios.post("/customer/", data)
+        axios.post("/customer/", data, {
+            headers: { 'Authorization': `token ${token}` }
+        })
             .then(() => {
                 setSubmitted(true);
                 onAlertUpdate({
@@ -117,7 +119,7 @@ const CreateLeave = (props) => {
 
 const mapStateToProps = state => {
     return {
-        email: state.auth.email
+        token: state.auth.token
     }
 }
 
